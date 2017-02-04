@@ -39,7 +39,11 @@ public class UserProfile extends AppCompatActivity {
         userName.setText(currentUser.getName());
 
         final TextView userPhone = (TextView) findViewById(R.id.userPhone);
-        userName.setText(currentUser.getPhoneNumber());
+        userPhone.setText(currentUser.getPhoneNumber());
+
+        final TextView userLocation = (TextView) findViewById(R.id.userLocation);
+        userLocation.setText(currentUser.getProvince() +"," +currentUser.getCountry());
+
 
     }
 
