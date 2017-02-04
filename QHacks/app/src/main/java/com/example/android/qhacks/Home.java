@@ -13,5 +13,6 @@ public class Home extends AppCompatActivity {
         final ImageView homeButton = (ImageView) findViewById(R.id.homeImageView);
         final ImageView profileButton = (ImageView) findViewById(R.id.profileImageView);
         final ImageView searchButton = (ImageView) findViewById(R.id.searchImageView);
+        
     }
 }
