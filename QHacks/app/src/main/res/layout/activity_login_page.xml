@@ -18,8 +18,9 @@
         android:layout_marginTop="46dp"
         android:id="@+id/userName"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:hint="Enter your username.." />
+        android:hint="Enter your username.."
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -30,7 +31,8 @@
         android:layout_alignStart="@+id/userName"
         android:layout_marginTop="34dp"
         android:id="@+id/password"
-        android:hint="Enter your password..." />
+        android:hint="Enter your password..."
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:text="Log In!"
