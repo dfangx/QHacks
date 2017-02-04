@@ -1,11 +1,16 @@
 package com.example.android.qhacks;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.twitter.sdk.android.Twitter;
@@ -25,7 +30,9 @@ public class LoginPage extends AppCompatActivity {
     private String userName, password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
+        this.setContentView(R.layout.activity_login_page);
         TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
         Fabric.with(this, new Twitter(authConfig));
         setContentView(R.layout.activity_login_page);
@@ -45,6 +52,10 @@ public class LoginPage extends AppCompatActivity {
                 }
             }
         });
+
+        TextView tv=(TextView)findViewById(R.id.custom);
+        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Verdana.ttf");
+        tv.setTypeface(face);
 
         final Button registrationButton = (Button) findViewById(R.id.registerButton);
         registrationButton.setOnClickListener(new View.OnClickListener(){
@@ -72,12 +83,8 @@ public class LoginPage extends AppCompatActivity {
             return true;
 
         return false;
-
-        //return false;
-        //^TESTING PURPOSES
-        //Take the above strings and compare it with what you will have stored in the database
-        //Return true if success, return false if not
     }
+
     public String hashing(String s) {
         final String MD5 = "MD5";
         try {
@@ -100,5 +107,7 @@ public class LoginPage extends AppCompatActivity {
             e.printStackTrace();
         }
         return "";
+
     }
 }
+

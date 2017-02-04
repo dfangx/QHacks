@@ -27,11 +27,11 @@ public class ConnectToDB extends AsyncTask <String, String, String[]> {
             System.out.println("connected");
             if (credentials[credentials.length-1].equals("0"))
                 storeUserCredentials(credentials[0], credentials[1], credentials[2], credentials[3], con);
-            if (credentials[credentials.length-1].equals("1"))
-                storeUserInfo(credentials[0], credentials[1], credentials[2], credentials[3], credentials[4], credentials[5], credentials[6], con);
-            else {
+
+            else if (credentials[credentials.length-1].equals("1")){
                 login = retrieveUserCredentials(credentials[0], credentials[1], con);
-            }
+            }else
+                storeUserInfo(credentials[0], credentials[1], credentials[2], credentials[3], credentials[4], credentials[5], con);
         }
         catch(Exception e)
         {
@@ -110,9 +110,9 @@ public class ConnectToDB extends AsyncTask <String, String, String[]> {
         }
     }
 
-    public void storeUserInfo(String userName, String country, String phoneNumber, String age, String province, String description, String isDoc, Connection con) throws SQLException {
+    public void storeUserInfo(String country, String phoneNumber, String age, String province, String description, String isDoc, Connection con) throws SQLException {
         int isDoctor = Integer.parseInt(isDoc);
-        String query = "USE QHacks; INSERT INTO profile_info(NAMES, PHONE, COUNTRY, PROVINCE, POSTAL, QUALIFICATIONS, ISDOC) VALUES('" + userName + "', '" + country + "', '" + phoneNumber + "', '" + age+ "', '" + province + "', '" + description + "', '" + isDoctor+"');";
+        String query = "USE QHacks; INSERT INTO profile_info(PHONE, COUNTRY, PROVINCE, AGE, QUALIFICATIONS, ISDOC) VALUES('" + phoneNumber + "', '" + country + "', '" + province + "', '" + age+ "', '" + description + "', '" + isDoctor+"');";
 
         PreparedStatement stmt = null;
 
