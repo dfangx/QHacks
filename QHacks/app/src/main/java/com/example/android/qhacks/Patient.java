@@ -1,7 +1,7 @@
 package com.example.android.qhacks;
 
 /**
- * Created by vrukshavakees on 2017-02-04.
+ * Created byr vrukshavakees on 2017-02-04.
  */
 
 public class Patient extends User {
