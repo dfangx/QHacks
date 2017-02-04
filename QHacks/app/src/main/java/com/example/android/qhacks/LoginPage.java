@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
 
 public class LoginPage extends AppCompatActivity {
     private String userName, password;
@@ -17,7 +18,6 @@ public class LoginPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
-        new ConnectToDB().execute();
         final EditText userNameBox = (EditText) findViewById(R.id.userName);
         final EditText passwordBox = (EditText) findViewById(R.id.password);
         final Button loginButton = (Button) findViewById(R.id.loginButton);

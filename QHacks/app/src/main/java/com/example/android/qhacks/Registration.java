@@ -18,9 +18,10 @@ public class Registration extends AppCompatActivity {
         final EditText password = (EditText) findViewById(R.id.passwordBox);
         final EditText userName = (EditText) findViewById(R.id.userNameBox);
         final Button registerButton = (Button) findViewById(R.id.registerButton);
+
         registerButton.setOnClickListener(new View.OnClickListener(){
             public void onClick (View view){
-                //Insert your SQL stuff here
+                new ConnectToDB().execute(name.getText().toString(), userName.getText().toString(), password.getText().toString(), email.getText().toString());
                 Intent myIntent = new Intent(view.getContext(), Home.class);
                 startActivityForResult(myIntent, 0);
             }
