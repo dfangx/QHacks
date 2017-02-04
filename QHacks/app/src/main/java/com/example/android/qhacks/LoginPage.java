@@ -57,8 +57,6 @@ public class LoginPage extends AppCompatActivity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        /*for (int i = 0; i < login.length; i++)
-            System.out.println(login[i]);*/
 
         if (userName.equals(login[0]) && hashedPassword.equals(login[1]))
             return true;
