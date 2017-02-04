@@ -36,7 +36,8 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".LoginActivity" />
-        <activity android:name=".Registration"></activity>
+        <activity android:name=".Registration" />
+        <activity android:name=".EnterInformation"></activity>
     </application>
 
 </manifest>
