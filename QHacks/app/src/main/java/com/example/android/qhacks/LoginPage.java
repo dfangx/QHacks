@@ -47,11 +47,23 @@ public class LoginPage extends AppCompatActivity {
 
     public boolean verifyLogin(String userName, String password){
         String hashedPassword = hashing(password);
-
+        String[] login = new String[2];
         ConnectToDB cTDB = new ConnectToDB();
-        cTDB.execute(userName, hashedPassword, "1");
-        System.out.println(cTDB.match);
-        return cTDB.match;
+
+        try {
+            login = cTDB.execute(userName, hashedPassword, "1").get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        /*for (int i = 0; i < login.length; i++)
+            System.out.println(login[i]);*/
+
+        if (userName.equals(login[0]) && hashedPassword.equals(login[1]))
+            return true;
+
+        return false;
 
         //return false;
         //^TESTING PURPOSES
