@@ -24,9 +24,9 @@ public class EnterInformation extends AppCompatActivity {
         doneButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 if (isDoctor.isChecked())
-                    new ConnectToDB().execute(country.getText().toString(), phoneNumber.getText().toString(), age.getText().toString(), province.getText().toString(), description.getText().toString(), "0", "0");
+                    new ConnectToDB().execute(country.getText().toString(), phoneNumber.getText().toString(), age.getText().toString(), province.getText().toString(), description.getText().toString(), "0", "2");
                 else
-                    new ConnectToDB().execute(country.getText().toString(), phoneNumber.getText().toString(), age.getText().toString(), province.getText().toString(), description.getText().toString(), "1", "0");
+                    new ConnectToDB().execute(country.getText().toString(), phoneNumber.getText().toString(), age.getText().toString(), province.getText().toString(), description.getText().toString(), "1", "2");
                 Intent myIntent = new Intent(view.getContext(), Home.class);
                 startActivityForResult(myIntent, 0);
             }
