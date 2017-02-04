@@ -88,12 +88,20 @@
     <TextView
         android:text="User' Description"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_below="@+id/userQualification"
         android:layout_marginTop="46dp"
         android:id="@+id/userDescription"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_above="@+id/homeImageView" />
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Information"
+        android:id="@+id/button"
+        android:layout_marginBottom="21dp"
+        android:layout_above="@+id/profileImageView"
+        android:layout_toEndOf="@+id/homeImageView" />
 
 </RelativeLayout>
