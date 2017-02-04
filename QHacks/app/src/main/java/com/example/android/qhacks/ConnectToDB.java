@@ -2,6 +2,8 @@ package com.example.android.qhacks;
 
 import android.os.AsyncTask;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -36,6 +38,8 @@ public class ConnectToDB extends AsyncTask <String, Void, Void> {
     }
 
     public void storeUserCredentials(String name, String username, String password, String email, Connection con) throws SQLException {
+        password = hashing(password);
+
         String query = "USE QHacks; INSERT INTO login_info(NAMES, USERNAME, PASSCODE, EMAIL) VALUES('" + name + "', '" + username + "', '" + password + "', '" + email+ "');";
 
         //query.replaceAll("[^\\u0000-\\uFFFF]", "\uFFFD");
@@ -53,5 +57,29 @@ public class ConnectToDB extends AsyncTask <String, Void, Void> {
                 stmt.close();
             }
         }
+    }
+
+    public String hashing(String s) {
+        final String MD5 = "MD5";
+        try {
+            // Create MD5 Hash
+            MessageDigest digest = java.security.MessageDigest.getInstance(MD5);
+            digest.update(s.getBytes());
+            byte messageDigest[] = digest.digest();
+
+            // Create Hex String
+            StringBuilder hexString = new StringBuilder();
+            for (byte aMessageDigest : messageDigest) {
+                String h = Integer.toHexString(0xFF & aMessageDigest);
+                while (h.length() < 2)
+                    h = "0" + h;
+                hexString.append(h);
+            }
+            return hexString.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }
