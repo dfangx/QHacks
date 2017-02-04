@@ -37,4 +37,63 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/searchImageView" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/doctor"
+        android:layout_alignParentStart="true"
+        android:id="@+id/imageView2"
+        android:layout_alignEnd="@+id/searchImageView"
+        android:layout_alignBottom="@+id/userLocation" />
+
+    <TextView
+        android:text="User Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nameLabel"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/imageView2" />
+
+    <TextView
+        android:text="User's Location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="46dp"
+        android:id="@+id/userLocation"
+        android:layout_below="@+id/userPhone"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/imageView2" />
+
+    <TextView
+        android:text="User's Phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="46dp"
+        android:id="@+id/userPhone"
+        android:layout_below="@+id/nameLabel"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/imageView2" />
+
+    <TextView
+        android:text="User's Symptoms/Field of Study"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="46dp"
+        android:id="@+id/userQualification"
+        android:layout_below="@+id/imageView2"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="User' Description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userQualification"
+        android:layout_marginTop="46dp"
+        android:id="@+id/userDescription"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/homeImageView" />
+
 </RelativeLayout>
