@@ -9,7 +9,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  * Created by cyrus on 2017-02-04.
@@ -49,19 +48,6 @@ public class ConnectToDB extends AsyncTask <String, String, String[]> {
     }
 
 
-    /*@Override
-    protected void onPostExecute(Void aVoid) {
-        System.out.print(match);
-        super.onPostExecute(aVoid);
-        System.out.print(match);
-
-        /*try {
-            retrieveUserCredentials(login[0], login[1], con);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }*/
-
     public String[] retrieveUserCredentials(String username, String hashedPassword, Connection con) throws SQLException {
         String selectUsernameQuery = "USE QHacks; SELECT USERNAME FROM login_info;", selectPasswordQuery = "USE QHacks; SELECT PASSCODE FROM login_info;", usernameDB, passwordDB;
         PreparedStatement stmt = null;
@@ -69,15 +55,12 @@ public class ConnectToDB extends AsyncTask <String, String, String[]> {
 
         try{
             stmt = con.prepareStatement(selectUsernameQuery);
-            //stmtPass = con.prepareStatement(selectPasswordQuery);
 
             ResultSet rS = stmt.executeQuery();
-            //ResultSet rSPass = stmtPass.executeQuery();
             while (rS.next()){
                 usernameDB = rS.getString("USERNAME");
                 System.out.println("In retrieve with " + usernameDB + " but looking for " + username);
                 if (username.equals(usernameDB)){
-                    //match = true;
                     login[0] = usernameDB;
                     break;
                 }
@@ -92,12 +75,6 @@ public class ConnectToDB extends AsyncTask <String, String, String[]> {
                 if (hashedPassword.equals(passwordDB)){
                     login[1] = passwordDB;
                 }
-                    /*System.out.println("PERFECT MATCH");
-                    match = true;
-                    break;
-                }
-                else
-                    match = false;*/
             }
 
         } catch (SQLException e) {
