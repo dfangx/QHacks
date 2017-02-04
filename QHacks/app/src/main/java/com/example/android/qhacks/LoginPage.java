@@ -8,16 +8,26 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import io.fabric.sdk.android.Fabric;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.util.concurrent.ExecutionException;
 
 public class LoginPage extends AppCompatActivity {
+
+    // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
+    private static final String TWITTER_KEY = "3B7uS031D5abt14tBe4pY2n4O";
+    private static final String TWITTER_SECRET = "fX2dUKaRE8DwnuCeLRdtHkV4GzoAx1R38gifSKXWnwVTYBywum";
+
     private String userName, password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
+        Fabric.with(this, new Twitter(authConfig));
         setContentView(R.layout.activity_login_page);
         final EditText userNameBox = (EditText) findViewById(R.id.userName);
         final EditText passwordBox = (EditText) findViewById(R.id.password);
