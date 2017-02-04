@@ -33,9 +33,10 @@ public class LoginPage extends AppCompatActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         //this.setContentView(R.layout.activity_login_page);
+        setContentView(R.layout.activity_login_page);
         TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
         Fabric.with(this, new Twitter(authConfig));
-        setContentView(R.layout.activity_login_page);
+
         final EditText userNameBox = (EditText) findViewById(R.id.userName);
         final EditText passwordBox = (EditText) findViewById(R.id.password);
         final Button loginButton = (Button) findViewById(R.id.loginButton);
