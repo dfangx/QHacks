@@ -13,20 +13,9 @@ public class Patient extends User {
         this.country = country;
         this.province = province;
         this.description = description;
+        isDoctor = false;
     }
-    public String getName (){
-        return name;
-    }
-    public String getPostalCode(){
-        return postalCode;
-    }
-    public String getPhoneNumber() {return phoneNumber;}
-    public String getCountry(){
-        return country;
-    }
-    public String getProvince(){
-        return province;
-    }
+
     public String[] getDescription(){
         return description;
     }

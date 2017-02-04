@@ -25,6 +25,12 @@ public class Home extends AppCompatActivity {
         });
 
         final ImageView searchButton = (ImageView) findViewById(R.id.searchImageView);
+        searchButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), search.class);
+                startActivityForResult(myIntent, 0);
+            }
+        });
 
 
 

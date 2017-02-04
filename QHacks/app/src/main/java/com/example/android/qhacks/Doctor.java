@@ -15,22 +15,9 @@ public class Doctor extends User {
         this.country = country;
         this.province = province;
         this.qualifications = qualifications;
+        isDoctor = true;
     }
-    public String getName (){
-        return name;
-    }
-    public String getPostalCode(){
-        return postalCode;
-    }
-    public String getFieldOfStudy(){return fieldOfStudy;
-    }
-    public String getPhoneNumber() {return phoneNumber;}
-    public String getCountry(){
-        return country;
-    }
-    public String getProvince(){
-        return province;
-    }
+    public String getFieldOfStudy(){return fieldOfStudy;}
     public String[] getQualifications(){
         return qualifications;
     }
