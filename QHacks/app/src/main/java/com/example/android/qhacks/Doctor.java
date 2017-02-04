@@ -3,7 +3,7 @@ package com.example.android.qhacks;
 /**
  * Created by Gilbert Lam on 2017-02-03.
  */
-
+//kk
 public class Doctor extends User {
     private String[] qualifications;
     private String fieldOfStudy;
