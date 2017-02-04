@@ -41,10 +41,11 @@
         tools:fontFamily="sans-serif-smallcaps"
         android:layout_marginTop="12dp"
         android:layout_below="@+id/userName"
-        android:layout_alignStart="@+id/userName" />
+        android:layout_alignStart="@+id/userName"
+        android:textColorLink="@android:color/transparent" />
 
     <TextView
-        android:text="TextView"
+        android:text="User"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView4"
@@ -69,7 +70,7 @@
         android:hint="Enter username..." />
 
     <TextView
-        android:text="TextView"
+        android:text="Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/password"
@@ -78,7 +79,8 @@
         android:id="@+id/textView5"
         tools:text="Password"
         tools:fontFamily="sans-serif-smallcaps"
-        tools:textSize="18sp" />
+        tools:textSize="18sp"
+        android:textColorLink="@android:color/transparent" />
 
     <TextView
         android:text=" "
