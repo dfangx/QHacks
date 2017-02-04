@@ -32,7 +32,7 @@ public class LoginPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.activity_login_page);
+        //this.setContentView(R.layout.activity_login_page);
         TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
         Fabric.with(this, new Twitter(authConfig));
         setContentView(R.layout.activity_login_page);
@@ -53,9 +53,9 @@ public class LoginPage extends AppCompatActivity {
             }
         });
 
-        TextView tv=(TextView)findViewById(R.id.custom);
-        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Verdana.ttf");
-        tv.setTypeface(face);
+      //  TextView tv=(TextView)findViewById(R.id.custom);
+//        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Verdana.ttf");
+        //tv.setTypeface(face);
 
         final Button registrationButton = (Button) findViewById(R.id.registerButton);
         registrationButton.setOnClickListener(new View.OnClickListener(){
