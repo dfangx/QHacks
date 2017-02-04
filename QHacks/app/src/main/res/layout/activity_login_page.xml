@@ -9,57 +9,87 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@mipmap/download"
+    android:background="@mipmap/bridgeqhacks"
     tools:context="com.example.android.qhacks.LoginPage">
 
-    <EditText
+    <Button
+        android:text="Register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_marginTop="46dp"
-        android:id="@+id/userName"
-        android:layout_alignParentTop="true"
-        android:hint="Enter your username.."
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        android:id="@+id/registerButton"
+        android:layout_marginBottom="61dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/loginButton" />
+
+    <Button
+        android:text="Log In!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/loginButton"
+        android:textColorLink="@android:color/holo_green_dark"
+        android:layout_marginBottom="69dp"
+        android:layout_alignBottom="@+id/registerButton"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:layout_below="@+id/userName"
-        android:layout_alignStart="@+id/userName"
-        android:layout_marginTop="34dp"
         android:id="@+id/password"
-        android:hint="Enter your password..."
-        android:layout_alignParentEnd="true" />
+        android:hint="Enter password..."
+        tools:fontFamily="sans-serif-smallcaps"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/userName"
+        android:layout_alignStart="@+id/userName" />
 
-    <Button
-        android:text="Log In!"
+    <TextView
+        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/loginButton" />
+        android:id="@+id/textView4"
+        tools:text="User"
+        tools:textSize="18sp"
+        android:layout_alignBaseline="@+id/userName"
+        android:layout_alignBottom="@+id/userName"
+        android:layout_alignStart="@+id/textView3"
+        tools:fontFamily="sans-serif-smallcaps" />
 
-    <Button
-        android:text="Register"
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/loginButton"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_marginTop="74dp"
+        android:id="@+id/userName"
+        android:fontFamily="sans-serif-smallcaps"
+        android:layout_below="@+id/textView3"
         android:layout_alignStart="@+id/loginButton"
-        android:layout_marginTop="40dp"
-        android:id="@+id/registerButton" />
+        android:layout_marginStart="20dp"
+        android:hint="Enter username..." />
 
-    <ImageView
+    <TextView
+        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/d71c71a8"
-        android:layout_below="@+id/registerButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="38dp"
-        android:id="@+id/imageView3" />
+        android:layout_alignBottom="@+id/password"
+        android:layout_toStartOf="@+id/userName"
+        android:layout_marginBottom="11dp"
+        android:id="@+id/textView5"
+        tools:text="Password"
+        tools:fontFamily="sans-serif-smallcaps"
+        tools:textSize="18sp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        tools:text="STEM CELLS"
+        tools:textSize="30sp"
+        android:layout_marginTop="24dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/textView5"
+        android:layout_marginStart="51dp" />
 
 </RelativeLayout>
