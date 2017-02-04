@@ -83,12 +83,8 @@ public class LoginPage extends AppCompatActivity {
             return true;
 
         return false;
-
-        //return false;
-        //^TESTING PURPOSES
-        //Take the above strings and compare it with what you will have stored in the database
-        //Return true if success, return false if not
     }
+
     public String hashing(String s) {
         final String MD5 = "MD5";
         try {
