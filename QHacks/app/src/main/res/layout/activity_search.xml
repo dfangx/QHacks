@@ -37,4 +37,24 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/searchImageView" />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="14dp"
+        android:id="@+id/searchBar"
+        android:layout_toStartOf="@+id/profileImageView"
+        android:hint="Search..." />
+
+    <Button
+        android:text="Enter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/searchBar"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/searchButton" />
+
 </RelativeLayout>
