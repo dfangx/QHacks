@@ -15,21 +15,26 @@ import java.sql.Statement;
  * Created by cyrus on 2017-02-04.
  */
 
-public class ConnectToDB extends AsyncTask <String, String, Boolean> {
+public class ConnectToDB extends AsyncTask <String, String, Void> {
     boolean match = false;
+    String[] login = new String[3];
+    Connection con;
+
     @Override
-    protected Boolean doInBackground(String... credentials) {
+    protected Void doInBackground(String... credentials) {
         System.out.println("run");
 
         try
         {
             Class.forName("net.sourceforge.jtds.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:jtds:sqlserver://userdb.cwayrc2lh8ji.ca-central-1.rds.amazonaws.com:1433","username","password");
+            con = DriverManager.getConnection("jdbc:jtds:sqlserver://userdb.cwayrc2lh8ji.ca-central-1.rds.amazonaws.com:1433","username","password");
             System.out.println("connected");
             if (credentials[credentials.length-1].equals("0"))
                 storeUserCredentials(credentials[0], credentials[1], credentials[2], credentials[3], con);
-            else
-                match = retrieveUserCredentials(credentials[0], credentials[1], con);
+            else {
+                login = credentials;
+                retrieveUserCredentials(credentials[0], credentials[1], con);
+            }
         }
         catch(Exception e)
         {
@@ -41,21 +46,26 @@ public class ConnectToDB extends AsyncTask <String, String, Boolean> {
             return null;
         else {
             System.out.println("boo");
-            return match;
+        }
+
+        return null;
+    }
+
+
+    @Override
+    protected void onPostExecute(Void aVoid) {
+        super.onPostExecute(aVoid);
+        try {
+            retrieveUserCredentials(login[0], login[1], con);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
-    @Override
-    protected void onPostExecute(Boolean match) {
-        super.onPostExecute(match);
-        
-    }
-
-    public boolean retrieveUserCredentials(String username, String hashedPassword, Connection con) throws SQLException {
+    public void retrieveUserCredentials(String username, String hashedPassword, Connection con) throws SQLException {
         String selectUsernameQuery = "USE QHacks; SELECT USERNAME FROM login_info;", selectPasswordQuery = "USE QHacks; SELECT PASSCODE FROM login_info;", usernameDB, passwordDB;
         PreparedStatement stmt = null;
-        boolean match = false;
-
+        System.out.println("RETRIEVE DATA FIRST VALUE" + match);
         try{
             stmt = con.prepareStatement(selectUsernameQuery);
             //stmtPass = con.prepareStatement(selectPasswordQuery);
@@ -72,8 +82,6 @@ public class ConnectToDB extends AsyncTask <String, String, Boolean> {
                 }
             }
 
-            if (match == false)
-                return match;
 
             stmt = con.prepareStatement(selectPasswordQuery);
             rS = stmt.executeQuery();
@@ -81,9 +89,10 @@ public class ConnectToDB extends AsyncTask <String, String, Boolean> {
                 passwordDB = rS.getString("PASSCODE");
                 System.out.println("In retrieve with " + passwordDB);
                 if (hashedPassword.equals(passwordDB)){
+                    System.out.println("PERFECT MATCH");
                     match = true;
-                    break;
-                }else
+                }
+                else
                     match = false;
             }
 
@@ -95,8 +104,6 @@ public class ConnectToDB extends AsyncTask <String, String, Boolean> {
                 stmt.close();
             }
         }
-
-        return match;
 
     }
 
