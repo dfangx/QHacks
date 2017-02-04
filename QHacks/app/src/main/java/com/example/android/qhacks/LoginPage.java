@@ -28,7 +28,7 @@ public class LoginPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.your_layout_name_here);
+        //this.setContentView(R.layout.your_layout_name_here);
         TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
         Fabric.with(this, new Twitter(authConfig));
         setContentView(R.layout.activity_login_page);
@@ -75,12 +75,8 @@ public class LoginPage extends AppCompatActivity {
             return true;
 
         return false;
-
-        //return false;
-        //^TESTING PURPOSES
-        //Take the above strings and compare it with what you will have stored in the database
-        //Return true if success, return false if not
     }
+
     public String hashing(String s) {
         final String MD5 = "MD5";
         try {
