@@ -27,6 +27,8 @@ public class ConnectToDB extends AsyncTask <String, String, String[]> {
             System.out.println("connected");
             if (credentials[credentials.length-1].equals("0"))
                 storeUserCredentials(credentials[0], credentials[1], credentials[2], credentials[3], con);
+            if (credentials[credentials.length-1].equals("1"))
+                storeUserInfo(credentials[0], credentials[1], credentials[2], credentials[3], credentials[4], credentials[5], credentials[6], con);
             else {
                 login = retrieveUserCredentials(credentials[0], credentials[1], con);
             }
@@ -91,6 +93,26 @@ public class ConnectToDB extends AsyncTask <String, String, String[]> {
         password = hashing(password);
 
         String query = "USE QHacks; INSERT INTO login_info(NAMES, USERNAME, PASSCODE, EMAIL) VALUES('" + name + "', '" + username + "', '" + password + "', '" + email+ "');";
+
+        PreparedStatement stmt = null;
+
+        try{
+            stmt = con.prepareStatement(query);
+            stmt.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("failure");
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+    }
+
+    public void storeUserInfo(String userName, String country, String phoneNumber, String age, String province, String description, String isDoc, Connection con) throws SQLException {
+        int isDoctor = Integer.parseInt(isDoc);
+        String query = "USE QHacks; INSERT INTO profile_info(NAMES, PHONE, COUNTRY, PROVINCE, POSTAL, QUALIFICATIONS, ISDOC) VALUES('" + userName + "', '" + country + "', '" + phoneNumber + "', '" + age+ "', '" + province + "', '" + description + "', '" + isDoctor+"');";
 
         PreparedStatement stmt = null;
 

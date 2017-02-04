@@ -42,7 +42,6 @@
         android:id="@+id/ageBox"
         android:layout_below="@+id/phoneBox"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
         android:hint="Age" />
 
     <EditText
@@ -76,4 +75,12 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/doneButton"
         android:layout_alignParentBottom="true" />
+
+    <RadioButton
+        android:text="Doctor?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ageBox"
+        android:id="@+id/isDoctor"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>
