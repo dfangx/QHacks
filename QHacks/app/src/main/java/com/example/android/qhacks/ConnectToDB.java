@@ -15,17 +15,21 @@ import java.sql.Statement;
  * Created by cyrus on 2017-02-04.
  */
 
-public class ConnectToDB extends AsyncTask <String, Void, Void> {
+public class ConnectToDB extends AsyncTask <String, String, Boolean> {
 
     @Override
-    protected Void doInBackground(String... credentials) {
+    protected Boolean doInBackground(String... credentials) {
         System.out.println("run");
+        boolean match = false;
         try
         {
             Class.forName("net.sourceforge.jtds.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:jtds:sqlserver://userdb.cwayrc2lh8ji.ca-central-1.rds.amazonaws.com:1433","username","password");
             System.out.println("connected");
-            storeUserCredentials(credentials[0], credentials[1], credentials[2], credentials[3], con);
+            if (credentials[credentials.length-1].equals("0"))
+                storeUserCredentials(credentials[0], credentials[1], credentials[2], credentials[3], con);
+            else
+                match = retrieveUserCredentials(credentials[0], credentials[1], con);
         }
         catch(Exception e)
         {
@@ -33,8 +37,65 @@ public class ConnectToDB extends AsyncTask <String, Void, Void> {
             System.out.println("error");
         }
         System.out.println("complete");
+        if (credentials[credentials.length-1].equals("0"))
+            return null;
+        else {
+            System.out.println("boo");
+            return match;
+        }
+    }
 
-        return null;
+    @Override
+    protected void onPostExecute(Boolean match) {
+        super.onPostExecute(match);
+        
+    }
+
+    public boolean retrieveUserCredentials(String username, String hashedPassword, Connection con) throws SQLException {
+        String selectUsernameQuery = "USE QHacks; SELECT USERNAME FROM login_info;", selectPasswordQuery = "USE QHacks; SELECT PASSCODE FROM login_info;", usernameDB, passwordDB;
+        PreparedStatement stmt = null;
+        boolean match = false;
+
+        try{
+            stmt = con.prepareStatement(selectUsernameQuery);
+            //stmtPass = con.prepareStatement(selectPasswordQuery);
+
+            ResultSet rS = stmt.executeQuery();
+            //ResultSet rSPass = stmtPass.executeQuery();
+
+            while (rS.next()){
+                usernameDB = rS.getString("USERNAME");
+                if (username.equals(usernameDB)){
+                    match = true;
+                    break;
+                }
+            }
+
+            if (match == false)
+                return match;
+
+            stmt = con.prepareStatement(selectPasswordQuery);
+            rS = stmt.executeQuery();
+            while (rS.next()){
+                passwordDB = rS.getString("PASSCODE");
+                if (hashedPassword.equals(passwordDB)){
+                    match = true;
+                    break;
+                }else
+                    match = false;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("failure");
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+
+        return match;
+
     }
 
     public void storeUserCredentials(String name, String username, String password, String email, Connection con) throws SQLException {
@@ -42,7 +103,6 @@ public class ConnectToDB extends AsyncTask <String, Void, Void> {
 
         String query = "USE QHacks; INSERT INTO login_info(NAMES, USERNAME, PASSCODE, EMAIL) VALUES('" + name + "', '" + username + "', '" + password + "', '" + email+ "');";
 
-        //query.replaceAll("[^\\u0000-\\uFFFF]", "\uFFFD");
         PreparedStatement stmt = null;
 
         try{
@@ -81,5 +141,9 @@ public class ConnectToDB extends AsyncTask <String, Void, Void> {
             e.printStackTrace();
         }
         return "";
+    }
+    @Override
+    public String toString(){
+        return ("Test");
     }
 }

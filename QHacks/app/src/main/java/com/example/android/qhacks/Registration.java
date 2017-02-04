@@ -21,7 +21,7 @@ public class Registration extends AppCompatActivity {
 
         registerButton.setOnClickListener(new View.OnClickListener(){
             public void onClick (View view){
-                new ConnectToDB().execute(name.getText().toString(), userName.getText().toString(), password.getText().toString(), email.getText().toString());
+                new ConnectToDB().execute(name.getText().toString(), userName.getText().toString(), password.getText().toString(), email.getText().toString(), "0");
                 Intent myIntent = new Intent(view.getContext(), Home.class);
                 startActivityForResult(myIntent, 0);
             }

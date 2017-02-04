@@ -11,6 +11,7 @@ import android.widget.Toast;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
+import java.util.concurrent.ExecutionException;
 
 public class LoginPage extends AppCompatActivity {
     private String userName, password;
@@ -46,6 +47,9 @@ public class LoginPage extends AppCompatActivity {
 
     public boolean verifyLogin(String userName, String password){
         String hashedPassword = hashing(password);
+
+        ConnectToDB cTDB = new ConnectToDB();
+        cTDB.execute(userName, hashedPassword, "1");
         return false;
         //^TESTING PURPOSES
         //Take the above strings and compare it with what you will have stored in the database
