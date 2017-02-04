@@ -19,7 +19,7 @@
         android:id="@+id/userName"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:hint="Enter your username" />
+        android:hint="Enter your username.." />
 
     <EditText
         android:layout_width="wrap_content"
