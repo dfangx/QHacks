@@ -36,4 +36,5 @@
         android:layout_alignTop="@+id/profileImageView"
         android:layout_centerHorizontal="true"
         android:id="@+id/searchImageView" />
+
 </RelativeLayout>
