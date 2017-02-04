@@ -50,7 +50,10 @@ public class LoginPage extends AppCompatActivity {
 
         ConnectToDB cTDB = new ConnectToDB();
         cTDB.execute(userName, hashedPassword, "1");
-        return false;
+        System.out.println(cTDB.match);
+        return cTDB.match;
+
+        //return false;
         //^TESTING PURPOSES
         //Take the above strings and compare it with what you will have stored in the database
         //Return true if success, return false if not

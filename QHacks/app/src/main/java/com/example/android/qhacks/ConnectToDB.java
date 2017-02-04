@@ -16,11 +16,11 @@ import java.sql.Statement;
  */
 
 public class ConnectToDB extends AsyncTask <String, String, Boolean> {
-
+    boolean match = false;
     @Override
     protected Boolean doInBackground(String... credentials) {
         System.out.println("run");
-        boolean match = false;
+
         try
         {
             Class.forName("net.sourceforge.jtds.jdbc.Driver");
@@ -65,6 +65,7 @@ public class ConnectToDB extends AsyncTask <String, String, Boolean> {
 
             while (rS.next()){
                 usernameDB = rS.getString("USERNAME");
+                System.out.println("In retrieve with " + usernameDB + " but looking for " + username);
                 if (username.equals(usernameDB)){
                     match = true;
                     break;
@@ -78,6 +79,7 @@ public class ConnectToDB extends AsyncTask <String, String, Boolean> {
             rS = stmt.executeQuery();
             while (rS.next()){
                 passwordDB = rS.getString("PASSCODE");
+                System.out.println("In retrieve with " + passwordDB);
                 if (hashedPassword.equals(passwordDB)){
                     match = true;
                     break;
