@@ -22,8 +22,7 @@ public class Doctor extends User {
     public String getPostalCode(){
         return postalCode;
     }
-    public String getFieldOfStudy(){return fieldOfStudy;
-    }
+    public String getFieldOfStudy(){return fieldOfStudy;}
     public String getPhoneNumber() {return phoneNumber;}
     public String getCountry(){
         return country;
