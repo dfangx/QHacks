@@ -80,7 +80,8 @@
         android:hint="Description"
         android:layout_marginBottom="33dp"
         android:layout_above="@+id/doneButton"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor ="#CFD8DC" />
 
     <RadioButton
         android:text="Doctor?"
@@ -90,10 +91,14 @@
         android:layout_alignBaseline="@+id/ageBox"
         android:layout_alignBottom="@+id/ageBox"
         android:layout_alignParentEnd="true" />
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="34dp"/>
 
 
 </RelativeLayout>
