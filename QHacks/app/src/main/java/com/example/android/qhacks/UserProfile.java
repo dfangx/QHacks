@@ -9,14 +9,14 @@ import android.widget.TextView;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 public class UserProfile extends AppCompatActivity {//SELECT ID FROM user_info
-    User currentUser;
+    //User currentUser = new Patient("Gilbert", "18","6478878022","Canada","Ontario","Broken Arms");;
     boolean isDoctor = false;
+    static User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
-
         final ImageView homeButton = (ImageView) findViewById(R.id.homeImageView);
         homeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -44,17 +44,11 @@ public class UserProfile extends AppCompatActivity {//SELECT ID FROM user_info
         final TextView userLocation = (TextView) findViewById(R.id.userLocation);
         userLocation.setText(currentUser.getProvince() +"," +currentUser.getCountry());
 
+        final TextView userEmail = (TextView) findViewById(R.id.userQualification);
+        userEmail.setText(currentUser.getEmail());
+
     }
 
-    public void setUser(User currentUser) {
-        if (currentUser.getIsDoctor()) {
-            this.currentUser = (Doctor) currentUser;
-            isDoctor = true;
-        } else {
-            this.currentUser = (Patient) currentUser;
-            isDoctor = false;
-        }
-    }
 
     public void createUserObject(){
        //STUFF

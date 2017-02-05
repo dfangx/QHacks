@@ -9,7 +9,8 @@ public abstract class User {
     protected String phoneNumber;
     protected String country;
     protected String province;
-    protected String postalCode;
+    protected String age;
+    protected String email;
     protected boolean isDoctor;
     public User(){
 
@@ -22,8 +23,11 @@ public abstract class User {
         return name;
     }
 
-    public String getPostalCode(){
-        return postalCode;
+    public String getAge(){
+        return age;
+    }
+    public String getEmail(){
+        return email;
     }
     public String getPhoneNumber() {return phoneNumber;}
     public String getCountry(){
@@ -32,4 +36,7 @@ public abstract class User {
     public String getProvince(){
         return province;
     }
+    abstract boolean search(String search);
+
+
 }

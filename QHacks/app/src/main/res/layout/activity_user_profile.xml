@@ -40,7 +40,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/doctor"
+        app:srcCompat="@drawable/d71c71a8"
         android:layout_alignParentStart="true"
         android:id="@+id/imageView2"
         android:layout_alignEnd="@+id/searchImageView"
@@ -161,6 +161,7 @@
         android:id="@+id/button"
         android:layout_marginBottom="21dp"
         android:layout_above="@+id/profileImageView"
-        android:layout_toEndOf="@+id/homeImageView" />
+        android:layout_toEndOf="@+id/homeImageView"
+        android:visibility="invisible" />
 
 </RelativeLayout>

@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 public class Home extends AppCompatActivity {
     //testing push
-
+    public static Patient THIS_USER = new Patient("Gilbert", "18","6478878022","Canada","Ontario","Broken Arms");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +20,7 @@ public class Home extends AppCompatActivity {
         final ImageView profileButton = (ImageView) findViewById(R.id.profileImageView);
         profileButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+               // UserProfile.setUser(THIS_USER);
                 Intent myIntent = new Intent(view.getContext(), UserProfile.class);
                 startActivityForResult(myIntent, 0);
             }

@@ -31,7 +31,6 @@ public class ConnectToDB extends AsyncTask <String, String, String[]> {
             System.out.println("connected");
             if (credentials[credentials.length-1].equals("0"))
                 storeUserCredentials(credentials[0], credentials[1], credentials[2], credentials[3], con);
-
             else if (credentials[credentials.length-1].equals("1")){
                 login = retrieveUserCredentials(credentials[0], credentials[1], con);
             }else if (credentials[credentials.length-1].equals("2"))
@@ -55,24 +54,38 @@ public class ConnectToDB extends AsyncTask <String, String, String[]> {
     }
 
     public String[] retrieveAllUserInfo(Connection con) throws SQLException {
-        String query = "USE QHacks; SELECT NAMES, EMAIL FROM login_info; SELECT * FROM profile_info;";
-        PreparedStatement stmt = null;
-        ArrayList logList = new ArrayList();
+        String query = "USE QHacks; SELECT ID, NAMES, EMAIL FROM login_info;", query2 =  "Use QHacks; SELECT * FROM profile_info;";;
+
+        PreparedStatement stmt = null, stmt2 = null;
+        ArrayList logList = new ArrayList();//, logList2 = new ArrayList();
         stmt = con.prepareStatement(query);
+        stmt2 = con.prepareStatement(query2);
 
         ResultSet rS = stmt.executeQuery();
-        while(rS.next()){
-            logList.add((rS.getInt("profile_info.ID")-1), rS.getString("login_info.NAMES") + rS.getString("login_info.EMAIL") + rS.getString("profile_info.PHONE") + rS.getString("profile_info.COUNTRY") +
-                    rS.getString("profile_info.PROVINCE") + rS.getString("profile_info.AGE") + rS.getString("profile_info.QUALIFICATIONS") + rS.getString("profile_info.ISDOC"));
+        ResultSet rS2 = stmt2.executeQuery();
+
+        while(rS.next() && rS2.next()){
+            logList.add((rS.getInt("ID")-1), rS.getString("NAMES") +"|"+ rS.getString("EMAIL") + "|"+rS2.getString("PHONE") +"|"+ rS2.getString("COUNTRY") +"|"+
+                    rS2.getString("PROVINCE") +"|"+ rS2.getString("AGE") + "|"+rS2.getString("QUALIFICATIONS") +"|"+ rS2.getString("ISDOC"));
         }
 
-        String[] logListArray = new String [getLength(logList)];
+
+        /*stmt = con.prepareStatement(query);
+
+        rS = stmt.executeQuery();
+        while (rS.next()){
+            logList2.add((rS.getInt("ID")-1), rS.getString("PHONE") + rS.getString("COUNTRY") +
+                rS.getString("PROVINCE") + rS.getString("AGE") + rS.getString("QUALIFICATIONS") + rS.getString("ISDOC"));
+        }*/
+        arrayLength = logList.size();
+        //logList1.addAll(logList2);
+        String[] logListArray = new String [arrayLength];
 
         for (int i = 0; i < logListArray.length; i++)
             logListArray[i] = (String) logList.get(i);
 
-        arrayLength = logListArray.length;
 
+        System.out.println("array cloned");
         return logListArray;
     }
 
