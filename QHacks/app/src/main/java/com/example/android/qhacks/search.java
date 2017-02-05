@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.concurrent.ExecutionException;
 
@@ -16,7 +17,7 @@ public class search extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-
+        final EditText searchBar = (EditText) findViewById(R.id.searchBar);
         final ImageView homeButton = (ImageView) findViewById(R.id.homeImageView);
         homeButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
@@ -55,8 +56,25 @@ public class search extends AppCompatActivity {
                     }
                     else
                         listOfUsers[i] = new Doctor(variables[0],variables[5],variables[1], variables[2], variables[3], variables[4], variables[6]);
-
-               // User[] relevantUsers = new User[]
+                String key = searchBar.getText().toString();
+                int i = 0;
+                for (int x = 0; x < listOfUsers.length;x++){
+                    if(listOfUsers[x].search(key)){
+                        if(i == 0) {
+                            final TextView firstCustomer = (TextView) findViewById(R.id.firstCustomer);
+                            firstCustomer.setText(listOfUsers[x].getName());
+                            firstCustomer.setOnClickListener(new View.OnClickListener(){
+                                public void onClick(View view){
+                                    Intent myIntent = new Intent(view.getContext(), UserProfile.class);
+                                    startActivityForResult(myIntent, 0);
+                                }
+                            });
+                        }
+                        i++;
+                        if(i == 5)
+                            break;
+                    }
+                }
             }
         });
 

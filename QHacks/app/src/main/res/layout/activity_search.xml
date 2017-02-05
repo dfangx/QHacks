@@ -30,24 +30,13 @@
         android:id="@+id/profileImageView" />
 
     <ImageView
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@android:drawable/ic_search_category_default"
         android:layout_alignTop="@+id/profileImageView"
         android:layout_centerHorizontal="true"
         android:id="@+id/searchImageView" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="14dp"
-        android:id="@+id/searchBar"
-        android:layout_toStartOf="@+id/profileImageView"
-        android:hint="Search..." />
 
     <Button
         android:text="Enter"
@@ -56,5 +45,62 @@
         android:layout_alignTop="@+id/searchBar"
         android:layout_alignParentEnd="true"
         android:id="@+id/searchButton" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_marginTop="28dp"
+        android:id="@+id/searchBar"
+        android:hint="Search..."
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/searchButton"
+        android:layout_marginTop="65dp"
+        android:id="@+id/firstCustomer"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/firstCustomer"
+        android:layout_marginTop="40dp"
+        android:id="@+id/secondCustomer"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/secondCustomer"
+        android:layout_marginTop="40dp"
+        android:id="@+id/thirdCustomer"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/thirdCustomer"
+        android:layout_alignStart="@+id/secondCustomer"
+        android:layout_marginTop="40dp"
+        android:id="@+id/fourthCustomer"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fourthCustomer"
+        android:layout_alignStart="@+id/thirdCustomer"
+        android:layout_marginTop="40dp"
+        android:id="@+id/fifthCustomer"
+        android:layout_alignParentEnd="true" />
+
 
 </RelativeLayout>
