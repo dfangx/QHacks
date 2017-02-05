@@ -37,7 +37,7 @@ public class ConnectToDB extends AsyncTask <String, String, String[]> {
             }else if (credentials[credentials.length-1].equals("2"))
                 storeUserInfo(credentials[0], credentials[1], credentials[2], credentials[3], credentials[4], credentials[5], con);
             else
-                logListArray = retrieveSearchResults(credentials[0], con);
+                logListArray = retrieveAllUserInfo(con);
         }
         catch(Exception e)
         {
@@ -54,8 +54,8 @@ public class ConnectToDB extends AsyncTask <String, String, String[]> {
             return logListArray;
     }
 
-    public String[] retrieveSearchResults(String keyWord, Connection con) throws SQLException {
-        String query = "USE QHackS; SELECT NAMES, EMAIL FROM login_info; SELECT * FROM profile_info;";
+    public String[] retrieveAllUserInfo(Connection con) throws SQLException {
+        String query = "USE QHacks; SELECT NAMES, EMAIL FROM login_info; SELECT * FROM profile_info;";
         PreparedStatement stmt = null;
         ArrayList logList = new ArrayList();
         stmt = con.prepareStatement(query);
@@ -68,10 +68,8 @@ public class ConnectToDB extends AsyncTask <String, String, String[]> {
 
         String[] logListArray = new String [getLength(logList)];
 
-        for (int i = 0; i < logListArray.length; i++){
+        for (int i = 0; i < logListArray.length; i++)
             logListArray[i] = (String) logList.get(i);
-            System.out.println(logListArray[i]);
-        }
 
         arrayLength = logListArray.length;
 

@@ -35,9 +35,11 @@ public class search extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String keyword = getKeyword();
-
                 ConnectToDB cTDB = new ConnectToDB();
-                cTDB.execute(keyword, "3");
+                cTDB.execute("3");
+                String logListArray[] = new String[cTDB.arrayLength];
+                for (int i = 0; i < logListArray.length; i++)
+                    System.out.println(logListArray[i]);
             }
         });
 
