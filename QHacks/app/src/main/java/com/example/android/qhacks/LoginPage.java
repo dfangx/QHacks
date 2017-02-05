@@ -1,31 +1,20 @@
 package com.example.android.qhacks;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.twitter.sdk.android.Twitter;
-import com.twitter.sdk.android.core.TwitterAuthConfig;
-import io.fabric.sdk.android.Fabric;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
 import java.util.concurrent.ExecutionException;
 
 public class LoginPage extends AppCompatActivity {
     String[] login = new String[3];
     // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
-    private static final String TWITTER_KEY = "3B7uS031D5abt14tBe4pY2n4O";
-    private static final String TWITTER_SECRET = "fX2dUKaRE8DwnuCeLRdtHkV4GzoAx1R38gifSKXWnwVTYBywum";
     public String[] profileInfo = new String[1];
     private String userName, password;
     @Override
@@ -34,9 +23,6 @@ public class LoginPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //this.setContentView(R.layout.activity_login_page);
         setContentView(R.layout.activity_login_page);
-        TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
-        Fabric.with(this, new Twitter(authConfig));
-
         final EditText userNameBox = (EditText) findViewById(R.id.userName);
         final EditText passwordBox = (EditText) findViewById(R.id.password);
         final Button loginButton = (Button) findViewById(R.id.loginButton);
