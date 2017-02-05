@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 public class Home extends AppCompatActivity {
     //testing push
-
+    //public static Patient THIS_USER = new Patient();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

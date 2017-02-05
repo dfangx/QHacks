@@ -49,14 +49,14 @@ public class search extends AppCompatActivity {
                 listOfUsers = new User[logListArray.length];
                 String[] variables = new String[8];
                 for (int i = 0; i < logListArray.length; i++)
-                    if (logListArray[i].charAt(logListArray[i].length())==('0')) {
+                    if (logListArray[i].charAt(logListArray[i].length()-1)==('0')) {
                         variables = logListArray[i].split("|");
                         listOfUsers[i] = new Patient(variables[0], variables[5],variables[2], variables[3], variables[4], variables[6]);
                     }
                     else
                         listOfUsers[i] = new Doctor(variables[0],variables[5],variables[1], variables[2], variables[3], variables[4], variables[6]);
 
-                System.out.println("done done");
+               // User[] relevantUsers = new User[]
             }
         });
 
