@@ -20,9 +20,10 @@ public class Patient extends User {
         return description;
     }
     public boolean search(String search){
-        if (description.contains(search) || name.equals(search) || phoneNumber.equals(search) || country.equals(search) || province.equals(search) || age.equals(search) || email.equals(search)){
+        if (description.contains(search) || search.equals(phoneNumber) || search.equals(country) || search.equals(name) || search.equals(province) || search.equals(age) || search.equals(email))
             return true;
-        }
         return false;
+       // }
+       // return false;
     }
 }

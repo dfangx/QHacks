@@ -4,11 +4,19 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.ImageView;
+
+import java.lang.reflect.Method;
 
 public class Home extends AppCompatActivity {
     //testing push
+
+    private WebView mWebView;
+    private boolean mIsPaused = false;
+
     public static Patient THIS_USER = new Patient("Gilbert", "18","6478878022","Canada","Ontario","Broken Arms");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +42,65 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        mWebView = (WebView) findViewById(R.id.webview);
+        mWebView.setWebChromeClient(new WebChromeClient());
+
+        WebSettings ws = mWebView.getSettings();
+        ws.setBuiltInZoomControls(true);
+        ws.setJavaScriptEnabled(true);
+
+        String media_url = "http://stemcellfoundation.ca/en/about-stem-cells/what-is-a-stem-cell/";
+
+        mIsPaused = true;
+        resumeBrowser();
+        mWebView.loadUrl(media_url);
 
 
+    }
 
+    @Override
+    protected void onPause()
+    {
+        pauseBrowser();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume()
+    {
+        resumeBrowser();
+        super.onResume();
+    }
+
+    private void pauseBrowser()
+    {
+        if (!mIsPaused)
+        {
+            // pause flash and javascript etc
+            callHiddenWebViewMethod(mWebView, "onPause");
+            mWebView.pauseTimers();
+            mIsPaused = true;
+        }
+    }
+
+    private void resumeBrowser()
+    {
+        if (mIsPaused)
+        {
+            // resume flash and javascript etc
+            callHiddenWebViewMethod(mWebView, "onResume");
+            mWebView.resumeTimers();
+            mIsPaused = false;
+        }
+    }
+
+    private void callHiddenWebViewMethod(final WebView wv, final String name)
+    {
+        try
+        {
+            final Method method = WebView.class.getMethod(name);
+            method.invoke(mWebView);
+        } catch (final Exception e)
+        {}
     }
 }
