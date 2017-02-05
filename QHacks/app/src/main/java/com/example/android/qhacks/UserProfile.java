@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-public class UserProfile extends AppCompatActivity {
+public class UserProfile extends AppCompatActivity {//SELECT ID FROM user_info
     User currentUser;
     boolean isDoctor = false;
 
@@ -44,7 +44,6 @@ public class UserProfile extends AppCompatActivity {
         final TextView userLocation = (TextView) findViewById(R.id.userLocation);
         userLocation.setText(currentUser.getProvince() +"," +currentUser.getCountry());
 
-
     }
 
     public void setUser(User currentUser) {
@@ -55,6 +54,10 @@ public class UserProfile extends AppCompatActivity {
             this.currentUser = (Patient) currentUser;
             isDoctor = false;
         }
+    }
+
+    public void createUserObject(){
+       //STUFF
     }
 
 }

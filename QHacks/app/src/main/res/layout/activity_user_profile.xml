@@ -40,7 +40,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/doctor"
+        app:srcCompat="@drawable/doctor"
         android:layout_alignParentStart="true"
         android:id="@+id/imageView2"
         android:layout_alignEnd="@+id/searchImageView"

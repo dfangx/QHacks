@@ -9,17 +9,21 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
+import static java.lang.reflect.Array.getLength;
 
 /**
  * Created by cyrus on 2017-02-04.
  */
 
 public class ConnectToDB extends AsyncTask <String, String, String[]> {
-
+    public int arrayLength;
     @Override
     protected String[] doInBackground(String... credentials) {
         System.out.println("run");
         String[]login = new String[2];
+        String[] logListArray = new String[arrayLength];
         try
         {
             Class.forName("net.sourceforge.jtds.jdbc.Driver");
@@ -30,8 +34,10 @@ public class ConnectToDB extends AsyncTask <String, String, String[]> {
 
             else if (credentials[credentials.length-1].equals("1")){
                 login = retrieveUserCredentials(credentials[0], credentials[1], con);
-            }else
+            }else if (credentials[credentials.length-1].equals("2"))
                 storeUserInfo(credentials[0], credentials[1], credentials[2], credentials[3], credentials[4], credentials[5], con);
+            else
+                logListArray = retrieveAllUserInfo(con);
         }
         catch(Exception e)
         {
@@ -40,13 +46,35 @@ public class ConnectToDB extends AsyncTask <String, String, String[]> {
         }
         System.out.println("complete");
 
-        if (credentials[credentials.length-1].equals("0"))
+        if (credentials[credentials.length-1].equals("0") || credentials[credentials.length-1].equals("2"))
             return null;
-        else {
+        else if (credentials[credentials.length-1].equals("1")){
             return login;
-        }
+        }else
+            return logListArray;
     }
 
+    public String[] retrieveAllUserInfo(Connection con) throws SQLException {
+        String query = "USE QHacks; SELECT NAMES, EMAIL FROM login_info; SELECT * FROM profile_info;";
+        PreparedStatement stmt = null;
+        ArrayList logList = new ArrayList();
+        stmt = con.prepareStatement(query);
+
+        ResultSet rS = stmt.executeQuery();
+        while(rS.next()){
+            logList.add((rS.getInt("profile_info.ID")-1), rS.getString("login_info.NAMES") + rS.getString("login_info.EMAIL") + rS.getString("profile_info.PHONE") + rS.getString("profile_info.COUNTRY") +
+                    rS.getString("profile_info.PROVINCE") + rS.getString("profile_info.AGE") + rS.getString("profile_info.QUALIFICATIONS") + rS.getString("profile_info.ISDOC"));
+        }
+
+        String[] logListArray = new String [getLength(logList)];
+
+        for (int i = 0; i < logListArray.length; i++)
+            logListArray[i] = (String) logList.get(i);
+
+        arrayLength = logListArray.length;
+
+        return logListArray;
+    }
 
     public String[] retrieveUserCredentials(String username, String hashedPassword, Connection con) throws SQLException {
         String selectUsernameQuery = "USE QHacks; SELECT USERNAME FROM login_info;", selectPasswordQuery = "USE QHacks; SELECT PASSCODE FROM login_info;", usernameDB, passwordDB;
