@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/bridgeqhacks"
     tools:context="com.example.android.qhacks.EnterInformation">
 
     <EditText
@@ -44,30 +45,6 @@
         android:layout_alignParentStart="true"
         android:hint="Age" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_centerVertical="true"
-        android:id="@+id/provinceBox"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:hint="Province" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:layout_marginTop="45dp"
-        android:id="@+id/descriptionBox"
-        android:hint="Description"
-        android:layout_below="@+id/provinceBox"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_above="@+id/doneButton" />
-
     <Button
         android:text="Enter"
         android:layout_width="wrap_content"
@@ -76,11 +53,47 @@
         android:id="@+id/doneButton"
         android:layout_alignParentBottom="true" />
 
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/countryBox"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/Country" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/provinceBox"
+        android:hint="Province"
+        android:layout_below="@+id/ageBox"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="41dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/descriptionBox"
+        android:hint="Description"
+        android:layout_marginBottom="33dp"
+        android:layout_above="@+id/doneButton"
+        android:layout_alignParentStart="true" />
+
     <RadioButton
         android:text="Doctor?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/ageBox"
         android:id="@+id/isDoctor"
+        android:layout_alignBaseline="@+id/ageBox"
+        android:layout_alignBottom="@+id/ageBox"
         android:layout_alignParentEnd="true" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+
 </RelativeLayout>
