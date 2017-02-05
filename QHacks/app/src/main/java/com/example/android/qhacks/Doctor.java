@@ -5,12 +5,11 @@ package com.example.android.qhacks;
  */
 //kk
 public class Doctor extends User {
-    private String[] qualifications;
+    private String qualifications;
     private String fieldOfStudy;
-    public Doctor (String name, String postalCode, String fieldOfStudy, String phoneNumber, String country, String province, String[] qualifications) {
+    public Doctor (String name, String age, String email, String phoneNumber, String country, String province, String qualifications) {
         this.name = name;
-        this.postalCode = postalCode;
-        this.fieldOfStudy = fieldOfStudy;
+        this.age = age;
         this.phoneNumber = phoneNumber;
         this.country = country;
         this.province = province;
@@ -18,7 +17,7 @@ public class Doctor extends User {
         isDoctor = true;
     }
     public String getFieldOfStudy(){return fieldOfStudy;}
-    public String[] getQualifications(){
+    public String getQualifications(){
         return qualifications;
     }
 }

@@ -161,6 +161,7 @@
         android:id="@+id/button"
         android:layout_marginBottom="21dp"
         android:layout_above="@+id/profileImageView"
-        android:layout_toEndOf="@+id/homeImageView" />
+        android:layout_toEndOf="@+id/homeImageView"
+        android:visibility="invisible" />
 
 </RelativeLayout>

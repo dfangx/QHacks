@@ -4,13 +4,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
 import java.util.concurrent.ExecutionException;
 
 public class search extends AppCompatActivity {
-
+    User[] listOfUsers;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +33,7 @@ public class search extends AppCompatActivity {
             }
         });
 
-        final ImageView searchButton = (ImageView) findViewById(R.id.searchImageView);
+        final Button searchButton = (Button) findViewById(R.id.searchButton);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,8 +46,15 @@ public class search extends AppCompatActivity {
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 }
+                listOfUsers = new User[logListArray.length];
+                String[] variables = new String[8];
                 for (int i = 0; i < logListArray.length; i++)
-                    System.out.println(logListArray[i]);
+                    if (logListArray[i].charAt(logListArray[i].length())==('0')) {
+                        variables = logListArray[i].split("|");
+                        listOfUsers[i] = new Patient(variables[0], variables[5],variables[2], variables[3], variables[4], variables[6]);
+                    }
+                    else
+                        listOfUsers[i] = new Doctor(variables[0],variables[5],variables[1], variables[2], variables[3], variables[4], variables[6]);
 
                 System.out.println("done done");
             }

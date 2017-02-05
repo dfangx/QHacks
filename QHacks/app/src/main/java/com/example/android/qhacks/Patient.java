@@ -5,10 +5,10 @@ package com.example.android.qhacks;
  */
 
 public class Patient extends User {
-    private String[] description;
-    public Patient (String name, String postalCode,String phoneNumber, String country, String province, String[] description) {
+    private String description;
+    public Patient (String name, String age,String phoneNumber, String country, String province, String description) {
         this.name = name;
-        this.postalCode = postalCode;
+        this.age = age;
         this.phoneNumber = phoneNumber;
         this.country = country;
         this.province = province;
@@ -16,7 +16,7 @@ public class Patient extends User {
         isDoctor = false;
     }
 
-    public String[] getDescription(){
+    public String getDescription(){
         return description;
     }
 }
