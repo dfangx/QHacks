@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import java.util.concurrent.ExecutionException;
+
 public class search extends AppCompatActivity {
 
     @Override
@@ -34,12 +36,19 @@ public class search extends AppCompatActivity {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String keyword = getKeyword();
                 ConnectToDB cTDB = new ConnectToDB();
-                cTDB.execute("3");
                 String logListArray[] = new String[cTDB.arrayLength];
+                try {
+                    logListArray = cTDB.execute("3").get();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
                 for (int i = 0; i < logListArray.length; i++)
                     System.out.println(logListArray[i]);
+
+                System.out.println("done done");
             }
         });
 
