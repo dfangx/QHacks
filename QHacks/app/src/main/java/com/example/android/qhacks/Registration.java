@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Registration extends AppCompatActivity {
 
@@ -22,9 +23,14 @@ public class Registration extends AppCompatActivity {
 
         registerButton.setOnClickListener(new View.OnClickListener(){
             public void onClick (View view){
-                new ConnectToDB().execute(name.getText().toString(), userName.getText().toString(), password.getText().toString(), email.getText().toString(), "0");
-                Intent myIntent = new Intent(view.getContext(), EnterInformation.class);
-                startActivityForResult(myIntent, 0);
+                if(!name.getText().toString().equals("") || !email.getText().toString().equals("") || !password.getText().toString().equals("") || !userName.getText().toString().equals("")) {
+                    new ConnectToDB().execute(name.getText().toString(), userName.getText().toString(), password.getText().toString(), email.getText().toString(), "0");
+                    Intent myIntent = new Intent(view.getContext(), EnterInformation.class);
+                    startActivityForResult(myIntent, 0);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),"FILL ALL FIELDS", Toast.LENGTH_LONG).show();
+                }
 
             }
         });
