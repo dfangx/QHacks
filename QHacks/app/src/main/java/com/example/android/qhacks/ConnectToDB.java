@@ -62,8 +62,8 @@ public class ConnectToDB extends AsyncTask <String, String, String[]> {
 
         ResultSet rS = stmt.executeQuery();
         while(rS.next()){
-            logList.add((rS.getInt("ID")-1), rS.getString("NAMES") + rS.getString("EMAIL") + rS.getString("PHONE") + rS.getString("COUNTRY") +
-                    rS.getString("PROVINCE") + rS.getString("AGE") + rS.getString("QUALIFICATIONS") + rS.getString("ISDOC"));
+            logList.add((rS.getInt("profile_info.ID")-1), rS.getString("login_info.NAMES") + rS.getString("login_info.EMAIL") + rS.getString("profile_info.PHONE") + rS.getString("profile_info.COUNTRY") +
+                    rS.getString("profile_info.PROVINCE") + rS.getString("profile_info.AGE") + rS.getString("profile_info.QUALIFICATIONS") + rS.getString("profile_info.ISDOC"));
         }
 
         String[] logListArray = new String [getLength(logList)];
