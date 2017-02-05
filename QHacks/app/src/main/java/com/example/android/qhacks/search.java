@@ -31,11 +31,17 @@ public class search extends AppCompatActivity {
         });
 
         final ImageView searchButton = (ImageView) findViewById(R.id.searchImageView);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String keyword = getKeyword();
 
-        String keyword = getKeyword();
+                ConnectToDB cTDB = new ConnectToDB();
+                cTDB.execute(keyword, "3");
+            }
+        });
 
-        ConnectToDB cTDB = new ConnectToDB();
-        cTDB.execute(keyword, "3");
+
 
     }
 

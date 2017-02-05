@@ -55,7 +55,7 @@ public class ConnectToDB extends AsyncTask <String, String, String[]> {
     }
 
     public String[] retrieveSearchResults(String keyWord, Connection con) throws SQLException {
-        String query = "USE QHAKCS; SELECT NAMES, EMAIL FROM login_info; SELECT * FROM profile_info;";
+        String query = "USE QHackS; SELECT NAMES, EMAIL FROM login_info; SELECT * FROM profile_info;";
         PreparedStatement stmt = null;
         ArrayList logList = new ArrayList();
         stmt = con.prepareStatement(query);
