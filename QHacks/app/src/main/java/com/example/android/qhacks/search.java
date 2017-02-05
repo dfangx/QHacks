@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 public class search extends AppCompatActivity {
@@ -31,5 +32,15 @@ public class search extends AppCompatActivity {
 
         final ImageView searchButton = (ImageView) findViewById(R.id.searchImageView);
 
+        String keyword = getKeyword();
+
+        ConnectToDB cTDB = new ConnectToDB();
+        cTDB.execute(keyword, "3");
+
+    }
+
+    public String getKeyword(){
+        EditText eT = (EditText)findViewById(R.id.searchBar);
+        return eT.toString();
     }
 }
