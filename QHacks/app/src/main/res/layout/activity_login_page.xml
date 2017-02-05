@@ -19,30 +19,33 @@
         android:id="@+id/registerButton"
         android:layout_marginBottom="61dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/loginButton" />
+        android:layout_alignStart="@+id/loginButton"
+        android:background="#07000000"
+        android:textColor="#FFFFFF"/>
 
     <Button
-        android:text="Log In!"
+        android:text="Log In"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/loginButton"
         android:textColorLink="@android:color/holo_green_dark"
         android:layout_marginBottom="69dp"
         android:layout_alignBottom="@+id/registerButton"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="#07000000"
+        android:textColor="#FFFFFF"/>
 
-    <EditText
+    <TextView
+        android:text="Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/password"
-        android:hint="Enter password..."
+        android:id="@+id/textView5"
+        tools:text="Password"
         tools:fontFamily="sans-serif-smallcaps"
-        android:layout_marginTop="12dp"
-        android:layout_below="@+id/userName"
-        android:layout_alignStart="@+id/userName"
-        android:textColorLink="@android:color/transparent" />
+        tools:textSize="18sp"
+        android:textColorLink="@android:color/transparent"
+        android:layout_alignBottom="@+id/userName"
+        android:layout_alignEnd="@+id/textView4" />
 
     <TextView
         android:text="User"
@@ -51,47 +54,44 @@
         android:id="@+id/textView4"
         tools:text="User"
         tools:textSize="18sp"
-        android:layout_alignBaseline="@+id/userName"
-        android:layout_alignBottom="@+id/userName"
-        android:layout_alignStart="@+id/textView3"
-        tools:fontFamily="sans-serif-smallcaps" />
+        tools:fontFamily="sans-serif-smallcaps"
+        android:layout_marginEnd="26dp"
+        android:layout_alignBaseline="@+id/password"
+        android:layout_alignBottom="@+id/password"
+        android:layout_toStartOf="@+id/userName" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/password"
+        tools:fontFamily="sans-serif-smallcaps"
+        android:textColorLink="@android:color/transparent"
+        android:layout_above="@+id/textView5"
+        android:layout_alignStart="@+id/loginButton" />
+
+    <TextView
+        android:text="ReGen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        tools:textSize="36sp"
+        android:layout_marginTop="25dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColorLink="@android:color/transparent" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:layout_marginTop="74dp"
+        android:layout_marginTop="78dp"
         android:id="@+id/userName"
         android:fontFamily="sans-serif-smallcaps"
         android:layout_below="@+id/textView3"
-        android:layout_alignStart="@+id/loginButton"
-        android:layout_marginStart="20dp"
-        android:hint="Enter username..." />
-
-    <TextView
-        android:text="Password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/password"
-        android:layout_toStartOf="@+id/userName"
-        android:layout_marginBottom="11dp"
-        android:id="@+id/textView5"
-        tools:text="Password"
-        tools:fontFamily="sans-serif-smallcaps"
-        tools:textSize="18sp"
+        android:layout_alignParentEnd="true"
         android:textColorLink="@android:color/transparent" />
-
-    <TextView
-        android:text=" "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView3"
-        tools:text="STEM CELLS"
-        tools:textSize="30sp"
-        android:layout_marginTop="24dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textView5"
-        android:layout_marginStart="51dp" />
 
 </RelativeLayout>

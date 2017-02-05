@@ -40,6 +40,8 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="cb2332dbf64b1df0806fc2e71927c0df9e105cdb" />
+
+
     </application>
 
 </manifest>
