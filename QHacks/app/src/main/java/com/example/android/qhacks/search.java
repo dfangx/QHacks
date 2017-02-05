@@ -63,16 +63,65 @@ public class search extends AppCompatActivity {
                         if(i == 0) {
                             final TextView firstCustomer = (TextView) findViewById(R.id.firstCustomer);
                             firstCustomer.setText(listOfUsers[x].getName());
+                            final int index = x;
                             firstCustomer.setOnClickListener(new View.OnClickListener(){
                                 public void onClick(View view){
+                                    UserProfile.currentUser = listOfUsers[index];
                                     Intent myIntent = new Intent(view.getContext(), UserProfile.class);
                                     startActivityForResult(myIntent, 0);
                                 }
                             });
                         }
-                        i++;
-                        if(i == 5)
+                        if(i == 1) {
+                            final TextView secondCustomer = (TextView) findViewById(R.id.secondCustomer);
+                            secondCustomer.setText(listOfUsers[x].getName());
+                            final int index = x;
+                            secondCustomer.setOnClickListener(new View.OnClickListener(){
+                                public void onClick(View view){
+                                    UserProfile.currentUser = listOfUsers[index];
+                                    Intent myIntent = new Intent(view.getContext(), UserProfile.class);
+                                    startActivityForResult(myIntent, 0);
+                                }
+                            });
+                        }
+                        if(i == 2) {
+                            final TextView thirdCustomer = (TextView) findViewById(R.id.thirdCustomer);
+                            thirdCustomer.setText(listOfUsers[x].getName());
+                            final int index = x;
+                            thirdCustomer.setOnClickListener(new View.OnClickListener(){
+                                public void onClick(View view){
+                                    UserProfile.currentUser = listOfUsers[index];
+                                    Intent myIntent = new Intent(view.getContext(), UserProfile.class);
+                                    startActivityForResult(myIntent, 0);
+                                }
+                            });
+                        }
+                        if(i == 3) {
+                            final TextView fourthCustomer = (TextView) findViewById(R.id.fourthCustomer);
+                            fourthCustomer.setText(listOfUsers[x].getName());
+                            final int index = x;
+                            fourthCustomer.setOnClickListener(new View.OnClickListener(){
+                                public void onClick(View view){
+                                    UserProfile.currentUser = listOfUsers[index];
+                                    Intent myIntent = new Intent(view.getContext(), UserProfile.class);
+                                    startActivityForResult(myIntent, 0);
+                                }
+                            });
+                        }
+                        if(i == 4) {
+                            final TextView fifthCustomer = (TextView) findViewById(R.id.fifthCustomer);
+                            fifthCustomer.setText(listOfUsers[x].getName());
+                            final int index = x;
+                            fifthCustomer.setOnClickListener(new View.OnClickListener(){
+                                public void onClick(View view){
+                                    UserProfile.currentUser = listOfUsers[index];
+                                    Intent myIntent = new Intent(view.getContext(), UserProfile.class);
+                                    startActivityForResult(myIntent, 0);
+                                }
+                            });
                             break;
+                        }
+                        i++;
                     }
                 }
             }

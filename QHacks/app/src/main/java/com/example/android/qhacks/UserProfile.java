@@ -9,8 +9,9 @@ import android.widget.TextView;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 public class UserProfile extends AppCompatActivity {//SELECT ID FROM user_info
-    User currentUser = new Patient("Gilbert", "18","6478878022","Canada","Ontario","Broken Arms");;
+    //User currentUser = new Patient("Gilbert", "18","6478878022","Canada","Ontario","Broken Arms");;
     boolean isDoctor = false;
+    static User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
