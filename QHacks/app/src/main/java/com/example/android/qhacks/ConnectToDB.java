@@ -18,12 +18,13 @@ import static java.lang.reflect.Array.getLength;
  */
 
 public class ConnectToDB extends AsyncTask <String, String, String[]> {
-    public int arrayLength;
+    public int arrayLength, arrayLengthProfile;
     @Override
     protected String[] doInBackground(String... credentials) {
         System.out.println("run");
-        String[]login = new String[2];
+        String[]login = new String[3];
         String[] logListArray = new String[arrayLength];
+        String[] profileInfo = new String[1];
         try
         {
             Class.forName("net.sourceforge.jtds.jdbc.Driver");
@@ -35,8 +36,10 @@ public class ConnectToDB extends AsyncTask <String, String, String[]> {
                 login = retrieveUserCredentials(credentials[0], credentials[1], con);
             }else if (credentials[credentials.length-1].equals("2"))
                 storeUserInfo(credentials[0], credentials[1], credentials[2], credentials[3], credentials[4], credentials[5], con);
-            else
+            else if (credentials[credentials.length-1].equals("3"))
                 logListArray = retrieveAllUserInfo(con);
+            else
+                profileInfo = retrieveUserProfile(credentials[0], con);
         }
         catch(Exception e)
         {
@@ -49,8 +52,39 @@ public class ConnectToDB extends AsyncTask <String, String, String[]> {
             return null;
         else if (credentials[credentials.length-1].equals("1")){
             return login;
-        }else
+        }else if (credentials[credentials.length-1].equals("3"))
             return logListArray;
+        else
+            return profileInfo;
+    }
+    public String [] retrieveUserProfile(String id, Connection con) throws SQLException {
+        ArrayList profileInfo = new ArrayList();
+        String query1 = "USE QHacks; SELECT NAMES, EMAIL FROM login_info;", query2 = "USE QHacks; SELECT * FROM profile_info";
+        int count = 0;
+
+        PreparedStatement stmt1 = con.prepareStatement(query1);
+        PreparedStatement stmt2 = con.prepareStatement(query2);
+
+        ResultSet rS1 = stmt1.executeQuery();
+        ResultSet rS2 = stmt2.executeQuery();
+
+        while(rS1.next() && rS2.next()){
+            count++;
+
+            if (count == Integer.parseInt(id)) {
+                profileInfo.add(0, rS1.getString("NAMES") + "|" + rS1.getString("EMAIL") + "|" + rS2.getString("PHONE") + "|" + rS2.getString("COUNTRY") + "|" +
+                        rS2.getString("PROVINCE") + "|" + rS2.getString("AGE") + "|" + rS2.getString("QUALIFICATIONS") + "|" + rS2.getString("ISDOC"));
+                break;
+            }
+        }
+        arrayLengthProfile = profileInfo.size();
+
+        String[] profileInfoArray = new String [1];
+        profileInfoArray[0] = (String) profileInfo.get(0);
+
+        System.out.println("array cloned");
+
+        return profileInfoArray;
     }
 
     public String[] retrieveAllUserInfo(Connection con) throws SQLException {
@@ -92,7 +126,8 @@ public class ConnectToDB extends AsyncTask <String, String, String[]> {
     public String[] retrieveUserCredentials(String username, String hashedPassword, Connection con) throws SQLException {
         String selectUsernameQuery = "USE QHacks; SELECT USERNAME FROM login_info;", selectPasswordQuery = "USE QHacks; SELECT PASSCODE FROM login_info;", usernameDB, passwordDB;
         PreparedStatement stmt = null;
-        String[]login = new String[2];
+        String[]login = new String[3];
+        int id = 0;
 
         try{
             stmt = con.prepareStatement(selectUsernameQuery);
@@ -101,8 +136,10 @@ public class ConnectToDB extends AsyncTask <String, String, String[]> {
             while (rS.next()){
                 usernameDB = rS.getString("USERNAME");
                 System.out.println("In retrieve with " + usernameDB + " but looking for " + username);
+                id++;
                 if (username.equals(usernameDB)){
                     login[0] = usernameDB;
+                    login[2] = Integer.toString(id);
                     break;
                 }
             }

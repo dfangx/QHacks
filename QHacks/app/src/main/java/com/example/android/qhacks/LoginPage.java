@@ -22,11 +22,11 @@ import java.sql.Connection;
 import java.util.concurrent.ExecutionException;
 
 public class LoginPage extends AppCompatActivity {
-
+    String[] login = new String[3];
     // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
     private static final String TWITTER_KEY = "3B7uS031D5abt14tBe4pY2n4O";
     private static final String TWITTER_SECRET = "fX2dUKaRE8DwnuCeLRdtHkV4GzoAx1R38gifSKXWnwVTYBywum";
-
+    public String[] profileInfo = new String[1];
     private String userName, password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +40,21 @@ public class LoginPage extends AppCompatActivity {
         final EditText userNameBox = (EditText) findViewById(R.id.userName);
         final EditText passwordBox = (EditText) findViewById(R.id.password);
         final Button loginButton = (Button) findViewById(R.id.loginButton);
+        final ConnectToDB cTDB = new ConnectToDB();
         loginButton.setOnClickListener(new View.OnClickListener(){
             public void onClick (View view) {
                 userName = userNameBox.getText().toString();
                 password = passwordBox.getText().toString();
                 if(verifyLogin(userName, password)){
+                    try {
+                        profileInfo = cTDB.execute(login[2],"4").get();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+
+                    System.out.println(profileInfo[0]);
                     Intent myIntent = new Intent(view.getContext(), Home.class);
                     startActivityForResult(myIntent, 0);
                 }
@@ -69,19 +79,20 @@ public class LoginPage extends AppCompatActivity {
 
     public boolean verifyLogin(String userName, String password){
         String hashedPassword = hashing(password);
-        String[] login = new String[2];
-        ConnectToDB cTDB = new ConnectToDB();
+        ConnectToDB cTDB1 = new ConnectToDB();
+        //int count = 1;
 
         try {
-            login = cTDB.execute(userName, hashedPassword, "1").get();
+            login = cTDB1.execute(userName, hashedPassword, "1").get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
 
-        if (userName.equals(login[0]) && hashedPassword.equals(login[1]))
+        if (userName.equals(login[0]) && hashedPassword.equals(login[1])) {
             return true;
+        }
 
         return false;
     }
