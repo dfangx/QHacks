@@ -48,15 +48,18 @@ public class search extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 listOfUsers = new User[logListArray.length];
-                String[] variables = new String[8];
+                String[] variables;
                 for (int i = 0; i < logListArray.length; i++)
                     if (logListArray[i].charAt(logListArray[i].length()-1)==('0')) {
-                        variables = logListArray[i].split("|");
+                        variables = logListArray[i].split("[|]");
                         listOfUsers[i] = new Patient(variables[0], variables[5],variables[2], variables[3], variables[4], variables[6]);
                     }
-                    else
-                        listOfUsers[i] = new Doctor(variables[0],variables[5],variables[1], variables[2], variables[3], variables[4], variables[6]);
+                    else {
+                        variables = logListArray[i].split("[|]");
+                        listOfUsers[i] = new Doctor(variables[0], variables[5], variables[1], variables[2], variables[3], variables[4], variables[6]);
+                    }
                 String key = searchBar.getText().toString();
+                System.out.println(listOfUsers[0].getName());
                 int i = 0;
                 for (int x = 0; x < listOfUsers.length;x++){
                     if(listOfUsers[x].search(key)){

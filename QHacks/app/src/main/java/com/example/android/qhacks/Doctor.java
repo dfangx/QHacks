@@ -21,6 +21,7 @@ public class Doctor extends User {
         return qualifications;
     }
     public boolean search(String search){
+
         if (qualifications.contains(search) || name.equals(search) || phoneNumber.equals(search) || country.equals(search) || province.equals(search) || age.equals(search) || email.equals(search)){
             return true;
         }
